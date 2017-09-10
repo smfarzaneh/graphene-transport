@@ -3,7 +3,7 @@
 % Created: September 10, 2017
 % Title: functions definition
 % Note: some physical constants and variabels must be defined beforehand;
-% to do this, run constant.m and variable.m first. 
+% to do this, run init_constant.m and init_variable.m first. 
 
 % Fermi function, E: energy
 f       = @(E) 1./(1 + exp((E - Ef)./(kB*T)));
