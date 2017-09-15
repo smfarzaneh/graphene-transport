@@ -17,6 +17,9 @@ function [] = plot_polarizability_bilayer()
 	ax2 = subplot(1, 2, 2);
 	hold(ax1, 'on')
 	hold(ax2, 'on')
+	grid(ax1, 'on')
+	grid(ax2, 'on')
+	axis([ax1 ax2],[0 0.3 0 10])
 
 	% Plot for gapless bilayer graphene (delta = 0 and multiple Ef's)
 	% We use set delta to 0.01 avoid integral divergence.
@@ -37,8 +40,12 @@ function [] = plot_polarizability_bilayer()
 		q = q/(pi/b); 		% with respect to cut-off momentum, pi/b.
 		polrz = polrz/N0;	% with respect to density of states at zero energy. 
 		
+		% Define finer grid for plotting.
+		q_fine = linspace(0, 0.3, 100);
+		polrz_fine = spline(q, polrz, q_fine); % interpolation
+
 		% Plot
-		plot(ax1, q, polrz, 'k', 'LineWidth', 2)
+		plot(ax1, q_fine, polrz_fine, 'k', 'LineWidth', 2)
 	end
 
 	set(ax1, ...
@@ -69,8 +76,12 @@ function [] = plot_polarizability_bilayer()
 		q = q/(pi/b); 		% with respect to cut-off momentum, pi/b.
 		polrz = polrz/N0;	% with respect to density of states at zero energy. 
 		
+		% Define finer grid for plotting.
+		q_fine = linspace(0, 0.3, 100);
+		polrz_fine = spline(q, polrz, q_fine); % interpolation
+
 		% Plot
-		plot(ax2, q, polrz, 'k', 'LineWidth', 2)
+		plot(ax2, q_fine, polrz_fine, 'k', 'LineWidth', 2)
 	end
 
 	set(ax2, ...
@@ -85,5 +96,7 @@ function [] = plot_polarizability_bilayer()
 
 	% Export the plot
 	% print -deps avg_scatt_vs_delta.eps
+
+	display('Polarizability was plotted.')
 end
 
