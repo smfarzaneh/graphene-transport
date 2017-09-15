@@ -11,8 +11,8 @@ function [] = plot_polarizability_bilayer()
 
 	% Prepare the figure
 	figure('Units', 'inches', ...
-		'Position', [5, 5, 10, 5], ...
-		'PaperPositionMode', 'auto')
+		'PaperSize', [7, 2.6], ...
+		'PaperPosition', [0, 0, 7, 2.6])
 	ax1 = subplot(1, 2, 1);
 	ax2 = subplot(1, 2, 2);
 	hold(ax1, 'on')
@@ -45,18 +45,18 @@ function [] = plot_polarizability_bilayer()
 		polrz_fine = spline(q, polrz, q_fine); % interpolation
 
 		% Plot
-		plot(ax1, q_fine, polrz_fine, 'k', 'LineWidth', 2)
+		plot(ax1, q_fine, polrz_fine, 'k', 'LineWidth', 1)
 	end
 
 	set(ax1, ...
 	'Units', 'normalized', ...
 	'FontUnits', 'points', ...
 	'FontWeight', 'normal', ...
-	'FontSize', 24, ...
+	'FontSize', 12, ...
 	'FontName', 'Times New Roman')
 	title(ax1, '$\Delta$ = 0 eV', 'Interpreter', 'latex')
-	xlabel(ax1, 'Wavevector q\timesb/\pi')
-	ylabel(ax1, 'Polarizability \Pi/N_0')
+	xlabel(ax1, 'Wavevector $q \times b/ \pi$', 'Interpreter', 'latex')
+	ylabel(ax1, 'Polarizability $\Pi /N_0$', 'Interpreter', 'latex')
 
 	% Plot for gapped bilayer graphene (delta = 0.8 and multiple Ef's)
 	delta = 0.8*qe; 		% energy asymmetry [J]
@@ -81,22 +81,22 @@ function [] = plot_polarizability_bilayer()
 		polrz_fine = spline(q, polrz, q_fine); % interpolation
 
 		% Plot
-		plot(ax2, q_fine, polrz_fine, 'k', 'LineWidth', 2)
+		plot(ax2, q_fine, polrz_fine, 'k', 'LineWidth', 1)
 	end
 
 	set(ax2, ...
 	'Units', 'normalized', ...
 	'FontUnits', 'points', ...
 	'FontWeight', 'normal', ...
-	'FontSize', 24, ...
+	'FontSize', 12, ...
 	'FontName', 'Times New Roman')
 	title(ax2, '$\Delta$ = 0.8 eV', 'Interpreter', 'latex')
-	xlabel(ax2, 'Wavevector q\timesb/\pi')
-	ylabel(ax2, 'Polarizability \Pi/N_0')
+	xlabel(ax2, 'Wavevector $q \times b/ \pi$', 'Interpreter', 'latex')
+	ylabel(ax2, 'Polarizability $\Pi /N_0$', 'Interpreter', 'latex')
 
-	% Export the plot
-	% print -deps avg_scatt_vs_delta.eps
+	% Save the plot
+	print -dpdf polrz_vs_momentum.pdf
+	display('Polarizability plot was saved.')
 
-	display('Polarizability was plotted.')
 end
 
