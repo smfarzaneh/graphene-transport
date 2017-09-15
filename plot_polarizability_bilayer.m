@@ -11,15 +11,12 @@ function [] = plot_polarizability_bilayer()
 
 	% Prepare the figure
 	figure('Units', 'inches', ...
-		'PaperSize', [7, 2.6], ...
-		'PaperPosition', [0, 0, 7, 2.6])
-	ax1 = subplot(1, 2, 1);
-	ax2 = subplot(1, 2, 2);
-	hold(ax1, 'on')
-	hold(ax2, 'on')
-	grid(ax1, 'on')
-	grid(ax2, 'on')
-	axis([ax1 ax2],[0 0.3 0 10])
+		'PaperSize', [2.6, 2.6], ...
+		'PaperPosition', [0, 0, 2.6, 2.6])
+	ax = gca;
+	hold(ax, 'on')
+	grid(ax, 'on')
+	axis(ax,[0 0.3 0 10])
 
 	% Plot for gapless bilayer graphene (delta = 0 and multiple Ef's)
 	% We use set delta to 0.01 avoid integral divergence.
@@ -45,22 +42,37 @@ function [] = plot_polarizability_bilayer()
 		polrz_fine = spline(q, polrz, q_fine); % interpolation
 
 		% Plot
-		plot(ax1, q_fine, polrz_fine, 'k', 'LineWidth', 1)
+		plot(ax, q_fine, polrz_fine, 'k', 'LineWidth', 1)
 	end
 
-	set(ax1, ...
+	% Set axes properties.
+	set(ax, ...
 	'Units', 'normalized', ...
 	'FontUnits', 'points', ...
 	'FontWeight', 'normal', ...
-	'FontSize', 12, ...
+	'FontSize', 10, ...
 	'FontName', 'Times New Roman')
-	title(ax1, '$\Delta$ = 0 eV', 'Interpreter', 'latex')
-	xlabel(ax1, 'Wavevector $q \times b/ \pi$', 'Interpreter', 'latex')
-	ylabel(ax1, 'Polarizability $\Pi /N_0$', 'Interpreter', 'latex')
+	title(ax, '$\Delta$ = 0 eV', 'Interpreter', 'latex')
+	xlabel(ax, 'Wavevector $q \times b/ \pi$', 'Interpreter', 'latex')
+	ylabel(ax, 'Polarizability $\Pi(q) /N_0$', 'Interpreter', 'latex')
+
+	% Save the plot
+	print -dpdf 'polrz_vs_momentum_delta0.pdf'
+	message = strcat('polrz_vs_momentum_delta08.pdf', ' was saved.');
+	disp(message)
+
+	% Prepare the figure	
+	figure('Units', 'inches', ...
+		'PaperSize', [2.6, 2.6], ...
+		'PaperPosition', [0, 0, 2.6, 2.6])
+	ax = gca;
+	hold(ax, 'on')
+	grid(ax, 'on')
+	axis(ax,[0 0.3 0 10])	
 
 	% Plot for gapped bilayer graphene (delta = 0.8 and multiple Ef's)
 	delta = 0.8*qe; 		% energy asymmetry [J]
- 	Ef = 0.1:0.1:0.5; 		% Fermi level [eV]
+ 	Ef = 0:0.1:0.5; 		% Fermi level [eV]
 	for i = 1:length(Ef)
 		% Load data from file
 		filename = strcat('data/polarizability/polrz', ...
@@ -81,22 +93,24 @@ function [] = plot_polarizability_bilayer()
 		polrz_fine = spline(q, polrz, q_fine); % interpolation
 
 		% Plot
-		plot(ax2, q_fine, polrz_fine, 'k', 'LineWidth', 1)
+		plot(ax, q_fine, polrz_fine, 'LineWidth', 1)
 	end
 
-	set(ax2, ...
+	% Set axes properties.
+	set(ax, ...
 	'Units', 'normalized', ...
 	'FontUnits', 'points', ...
 	'FontWeight', 'normal', ...
-	'FontSize', 12, ...
+	'FontSize', 10, ...
 	'FontName', 'Times New Roman')
-	title(ax2, '$\Delta$ = 0.8 eV', 'Interpreter', 'latex')
-	xlabel(ax2, 'Wavevector $q \times b/ \pi$', 'Interpreter', 'latex')
-	ylabel(ax2, 'Polarizability $\Pi /N_0$', 'Interpreter', 'latex')
+	title(ax, '$\Delta$ = 0.8 eV', 'Interpreter', 'latex')
+	xlabel(ax, 'Wavevector $q \times b/ \pi$', 'Interpreter', 'latex')
+	ylabel(ax, 'Polarizability $\Pi(q) /N_0$', 'Interpreter', 'latex')
 
 	% Save the plot
-	print -dpdf polrz_vs_momentum.pdf
-	display('Polarizability plot was saved.')
+	print -dpdf 'polrz_vs_momentum_delta08.pdf'
+	message = strcat('polrz_vs_momentum_delta08.pdf', ' was saved.');
+	disp(message)
 
 end
 
