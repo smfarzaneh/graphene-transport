@@ -42,7 +42,7 @@ function [] = plot_polarizability_bilayer()
 		polrz_fine = spline(q, polrz, q_fine); % interpolation
 
 		% Plot
-		plot(ax, q_fine, polrz_fine, 'k', 'LineWidth', 1)
+		plot(ax, q_fine, polrz_fine, 'LineWidth', 1)
 	end
 
 	% Set axes properties.
@@ -56,9 +56,16 @@ function [] = plot_polarizability_bilayer()
 	xlabel(ax, 'Wavevector $q \times b/ \pi$', 'Interpreter', 'latex')
 	ylabel(ax, 'Polarizability $\Pi(q) /N_0$', 'Interpreter', 'latex')
 
+	% Annotations
+	annotation('arrow', [0.6, 0.6], [0.4, 0.8], 'HeadWidth', 6, 'HeadLength', 6)
+	str1 = '$$E_f$$ = 0 eV';
+	str2 = '$$E_f$$ = 0.8 eV';
+	text(0.13, 2.5, str1, 'FontSize', 10, 'Interpreter', 'latex')
+	text(0.13, 9, str2, 'FontSize', 10, 'Interpreter', 'latex')
+
 	% Save the plot
 	print -dpdf 'polrz_vs_momentum_delta0.pdf'
-	message = strcat('polrz_vs_momentum_delta08.pdf', ' was saved.');
+	message = strcat('polrz_vs_momentum_delta0.pdf', ' was saved.');
 	disp(message)
 
 	% Prepare the figure	
@@ -107,6 +114,13 @@ function [] = plot_polarizability_bilayer()
 	xlabel(ax, 'Wavevector $q \times b/ \pi$', 'Interpreter', 'latex')
 	ylabel(ax, 'Polarizability $\Pi(q) /N_0$', 'Interpreter', 'latex')
 
+	% Annotations
+	annotation('arrow', [0.6, 0.6], [0.4, 0.8], 'HeadWidth', 6, 'HeadLength', 6)
+	str1 = '$$E_f$$ = 0 eV';
+	str2 = '$$E_f$$ = 0.8 eV';
+	text(0.13, 2.5, str1, 'FontSize', 10, 'Interpreter', 'latex')
+	text(0.13, 9, str2, 'FontSize', 10, 'Interpreter', 'latex')
+	
 	% Save the plot
 	print -dpdf 'polrz_vs_momentum_delta08.pdf'
 	message = strcat('polrz_vs_momentum_delta08.pdf', ' was saved.');
