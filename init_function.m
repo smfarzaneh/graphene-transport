@@ -95,6 +95,9 @@ plrz    = @(k, kp) ...
 
 % analytic polarizability of bilayer graphene 
 % reference: hwang2008screenning
+an_plrz_kf = @(E_fermi) ... % E_fermi: Fermi energy
+    sqrt(2*m*E_fermi)./hbar; 
+
 an_plrz_f   = @(q, kf) ...
     (2*kf.^2 + q.^2)./(2*kf.^2.*q).*sqrt(q.^2 - 4*kf.^2) + ...
     log((q - sqrt(q.^2 - 4*kf.^2))./(q + sqrt(q.^2 - 4*kf.^2)));
