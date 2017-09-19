@@ -1,7 +1,7 @@
 % MATLAB R2015a function
 % S. M. Farzaneh, farzaneh@nyu.edu
 % Created: September 19, 2017
-% Title: Calculate momentum relaxation time 
+% Title: Calculate k-dependent momentum relaxation time 
 % of electrons in bilayer graphene
 % Note: All the inputs must be scalar
 
@@ -23,7 +23,7 @@ function [Taui, Taud] = relaxation_bilayer(k, s, alpha, ef, del)
 
 	% Load polarizability data from file
 	filename = strcat('data/polarizability/polrz', ...
-		'_Ef', num2str(Ef/qe, ...
+		'_Ef', num2str(Ef/qe), ...
 		'_del', num2str(delta/qe), ...
 		'_T', num2str(T), ...
 		'.csv');
