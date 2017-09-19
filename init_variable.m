@@ -10,7 +10,7 @@ delta   = 0.8*qe;
 % temperature [K]
 T       = 300;          
 % impurity concentration [1/m^2] (sarma2011electronic)
-ni      = 10e15;        
+ni      = 1e15;        
 % disorder scattering parameter (sarma2011electronic)
 ndvd    = 1*qe^2*1e-20;     
 % substrate (SiO2) relative permittivity
