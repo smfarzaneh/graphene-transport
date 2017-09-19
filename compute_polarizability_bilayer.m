@@ -34,9 +34,11 @@ function [] = compute_polarizability_bilayer()
 	disp(['Completed in ', num2str(minutes), ' minutes and ', num2str(seconds), ' seconds'])
 	
 	% Save data to file
+	directory = 'data/polarizability/';
 	filename = strcat('polrz', '_Ef', num2str(Ef/qe), '_del', num2str(delta/qe), '_T', num2str(T), '.csv');
+	destination = strcat(directory, filename);
 	M = [q, Pi];
-	csvwrite(filename, M);
+	csvwrite(destination, M);
 	disp([filename, ' was saved.'])
 
 end
