@@ -5,8 +5,9 @@
 % Note: This function only returns positive solutions (k >= 0).
 % The negative values (k = -1) indicate that there is no solution.
 
-function [k1, k2] = momentum_energy_bilayer(E)
+function [k1, k2, alpha1, alpha2] = momentum_energy_bilayer(E)
 % k1, k2: wavevectors [1/m]
+% alpha1, alpha2: subband indices corresponding to k1 and k2
 % E: energy level [J]
 
 %% initialization
@@ -17,17 +18,40 @@ init_variable;      % initialize variables
 %% calculation
 func    = @(E, pm) 1/(hbar^2*vf^2)*(E.^2 + delta^2/4 + ...
     pm*sqrt(E.^2*(delta^2 + gamma1^2) - gamma1^2*delta^2/4));
-minmax  = gamma1*delta/(2*sqrt(gamma1^2 + delta^2));
+sub1min = gamma1*delta/(2*sqrt(gamma1^2 + delta^2));
+sub2min = sqrt(gamma1^2 + delta^2/4);
 num     = length(E); 
 k1      = -ones(num, 1);
+alpha1 	= zeros(num, 1);
 k2      = -ones(num, 1);
+alpha2 	= zeros(num, 1);
+
 % check if there is any answer
 for i = 1:num
-    if (E(i) >= minmax || E(i) <= -minmax)
-        temp = func(E(i), 1);
-        if (temp >= 0); k1(i) = sqrt(temp); end
-        temp = func(E(i), -1);
-        if (temp >= 0); k2(i) = sqrt(temp); end
+    if (abs(E(i)) >= sub1min)
+    	if (abs(E(i)) < sub2min)
+    		temp = func(E(i), -1);
+	        if (temp >= 0) 
+	        	k1(i) = sqrt(temp); 
+	        	alpha1(i) = 1;
+	        end
+	        temp = func(E(i), 1);
+	        if (temp >= 0) 
+	        	k2(i) = sqrt(temp); 
+	        	alpha2(i) = 1;
+	        end
+    	else
+	        temp = func(E(i), -1);
+	        if (temp >= 0) 
+	        	k1(i) = sqrt(temp); 
+	        	alpha1(i) = 2;
+	        end
+	        temp = func(E(i), 1);
+	        if (temp >= 0) 
+	        	k2(i) = sqrt(temp); 
+	        	alpha2(i) = 1;
+	        end
+        end
     end
 end
 end
