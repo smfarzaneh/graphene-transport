@@ -1,5 +1,6 @@
 # Results #
 ###########
+*.csv
 *.pdf
 
 # OS generated files #
