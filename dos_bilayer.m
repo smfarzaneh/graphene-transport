@@ -3,21 +3,23 @@
 % Created: September 10, 2017
 % Title: Density of states of bilayer graphene 
 
-function [DOS] = dos_bilayer(E)
+function [DOS] = dos_bilayer(E, del)
 % DOS: density of states [1/Jm^2]
 % E: energy level [J]
+% del: energy asymmetry [J]
 
 %% initialization
 % initialize necessary constants, variables, and functions
-init_constant;           % initialize physical constants and parameters
-init_variable;           % initialize variables
-init_function;           % initialize functions
+init_constant;        	% initialize physical constants and parameters
+init_variable;        	% initialize variables
+delta 	= del;			% replace energy asymmetry
+init_function;        	% initialize functions
 
 %% calculation
 minmax  = gamma1*delta/(2*sqrt(gamma1^2 + delta^2));
 num     = length(E); 
 DOS     = zeros(num, 1);
-[k1, k2, alpha1, alpha2] = momentum_energy_bilayer(E);
+[k1, k2, alpha1, alpha2] = momentum_energy_bilayer(E, del);
 for i = 1:num
     if (abs(E(i)) >= minmax)
         if(k1(i) > 0)

@@ -5,15 +5,17 @@
 % Note: This function only returns positive solutions (k >= 0).
 % The negative values (k = -1) indicate that there is no solution.
 
-function [k1, k2, alpha1, alpha2] = momentum_energy_bilayer(E)
+function [k1, k2, alpha1, alpha2] = momentum_energy_bilayer(E, del)
 % k1, k2: wavevectors [1/m]
 % alpha1, alpha2: subband indices corresponding to k1 and k2
 % E: energy level [J]
+% del: energy asymmetry [J]
 
 %% initialization
 % initialize necessary constants, variables, and functions
 init_constant;      % initialize physical constants and parameters
 init_variable;      % initialize variables
+delta 	= del; 		% replace energy asymmetry
 
 %% calculation
 func    = @(E, pm) 1/(hbar^2*vf^2)*(E.^2 + delta^2/4 + ...
