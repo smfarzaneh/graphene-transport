@@ -18,7 +18,7 @@ init_function;        	% initialize functions
 %% calculation
 minmax  = gamma1*delta/(2*sqrt(gamma1^2 + delta^2));
 num     = length(E); 
-DOS     = zeros(num, 1);
+DOS     = 0*E;
 [k1, k2, alpha1, alpha2] = momentum_energy_bilayer(E, del);
 for i = 1:num
     if (abs(E(i)) >= minmax)

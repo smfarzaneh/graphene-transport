@@ -23,10 +23,10 @@ func    = @(E, pm) 1/(hbar^2*vf^2)*(E.^2 + delta^2/4 + ...
 sub1min = gamma1*delta/(2*sqrt(gamma1^2 + delta^2));
 sub2min = sqrt(gamma1^2 + delta^2/4);
 num     = length(E); 
-k1      = -ones(num, 1);
-alpha1 	= zeros(num, 1);
-k2      = -ones(num, 1);
-alpha2 	= zeros(num, 1);
+k1      = 0*E - 1;
+alpha1 	= 0*E;
+k2      = 0*E - 1;
+alpha2 	= 0*E;
 
 % check if there is any answer
 for i = 1:num
