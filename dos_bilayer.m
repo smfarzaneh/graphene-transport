@@ -17,14 +17,14 @@ init_function;           % initialize functions
 minmax  = gamma1*delta/(2*sqrt(gamma1^2 + delta^2));
 num     = length(E); 
 DOS     = zeros(num, 1);
+[k1, k2, alpha1, alpha2] = momentum_energy_bilayer(E);
 for i = 1:num
-    if (E(i) >= minmax)
-        [k1, k2] = momentum_energy_bilayer(E(i));
-        if(k1 > 0)
-            DOS(i) = DOS(i) + k1/pi/de(k1, 1, 1);
+    if (abs(E(i)) >= minmax)
+        if(k1(i) > 0)
+            DOS(i) = DOS(i) + g*k1(i)/(2*pi)/abs(de(k1(i), 1, alpha1(i)));
         end 
-        if(k2 > 0)
-            DOS(i) = DOS(i) + k2/pi/de(k2, 1, 1);
+        if(k2(i) > 0)
+            DOS(i) = DOS(i) + g*k2(i)/(2*pi)/abs(de(k2(i), 1, alpha2(i)));
         end
     end
 end        
