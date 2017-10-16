@@ -8,7 +8,7 @@
 % Fermi function, E: energy
 f       = @(E) 1./(1 + exp((E - Ef)./(kB*T)));
 % derivative of Fermi function
-df      = @(E) -1/(kB*T)*exp((E - Ef)./(kB*T)).*f(E).^2;
+df      = @(E) -1/(kB*T)./(exp(-(E - Ef)./(2*kB*T)) + exp((E - Ef)./(2*kB*T))).^2;
 
 %% bandstructure
 % monolayer dispersion
