@@ -13,4 +13,7 @@ function [] = plot_figures_transport()
 	% it actually plots scattering rates
 	plot_relaxation_bilayer()
 
+	% Plot conductivity figures
+	plot_conductivity()
+
 end
