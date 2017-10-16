@@ -82,6 +82,6 @@ function [n, sigma] = conductivity(ni_scale, ndvd_scale, del)
 
 	% calculate corrsponding carrier density
 	n = carrier_ip(ef/qe);
-	n = n*1e12; 			% rescale
+	n = n*1e16; 			% rescale
 
 end
