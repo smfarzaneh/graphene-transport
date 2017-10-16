@@ -75,7 +75,7 @@ function [n, sigma] = conductivity(ni_scale, ndvd_scale, del)
 			'.csv');
 	M = csvread(filename);
 	fermi = M(:, 1)/qe; 	% corresponding Fermi levels [eV]
-	carrier = M(:, 2)/1e12; % carrier density [1e12 1/m^2]
+	carrier = M(:, 2)/1e16; % carrier density [1e12 1/cm^2]
 	
 	% interpolate the data points 
 	carrier_ip = @(x) pchip(fermi, carrier, x);
