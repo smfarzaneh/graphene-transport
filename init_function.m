@@ -20,8 +20,8 @@ Lambda  = @(k) sqrt(gamma1^4/4 + abs(phi(k)).^2.*(delta^2 + gamma1^2));
 ek      = @(k, s, alpha) s*sqrt(gamma1^2/2 + delta^2/4 + abs(phi(k)).^2 ...
     + (-1).^alpha.*Lambda(k));
 % derivative of bandstructure
-de      = @(k, s, alpha) s*hbar^2*vf^2*k.* ...
-    (2 + (-1).^alpha*(gamma1^2 + delta^2)./Lambda(k))./(2*ek(k, s, alpha));
+de      = @(k, s, alpha) 1/hbar*s*hbar^2*vf^2*k.* ...
+    (1 + (-1).^alpha*(gamma1^2 + delta^2)./(2*Lambda(k)))./(ek(k, s, alpha));
 
 %% un-normalized wavefunction
 % eigenvector of the 4x4 Hamiltonian corresponding to 
