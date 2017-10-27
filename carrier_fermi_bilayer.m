@@ -24,7 +24,7 @@ for i = 1:num
     Ef = ef(i);
     init_function;	% initialize functions
     n(i) = integral(@(E) dos_bilayer(E, delta).*f(E), minmax, Einf) - ...
-    	integral(@(E) dos_bilayer(E, delta).*(1 - f(E)), -Einf, minmax);
+    	integral(@(E) dos_bilayer(E, delta).*(1 - f(E)), -Einf, -minmax);
 end
 
 end
