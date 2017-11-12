@@ -13,7 +13,7 @@ function [del] = energy_asymmetry_vs_voltage(v, dn, tox, eox)
 
 	init_constant;         	% initialize physical constants and parameters
 	d = b; 					% distance between layers [m]
-	external_term = v*qe*d/(2*tox);
+	external_term = v*qe*d/(tox);
 	internal_term = dn*qe^2*d/(2*eps0*eox);	
 
 	del = external_term - internal_term;
