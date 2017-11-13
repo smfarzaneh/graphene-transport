@@ -13,7 +13,6 @@ function [del] = energy_asymmetry_vs_voltage(v, dn, tox, eox, nimp)
 	% nimp: impurity density (positive for positive charged impurities) [1/m^2]
 
 	init_constant;         	% initialize physical constants and parameters
-	d = b; 					% distance between layers [m]
 	ng = gate_carrier(v, tox, eox);
 	del0 = qe^2*(ng - nimp)*d/(eps0*eox);
 	del_correction = qe^2*dn*d/(2*eps0*eox);	
