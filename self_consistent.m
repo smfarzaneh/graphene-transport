@@ -26,10 +26,10 @@ function [ef, del, ntot] = self_consistent(v, tox, eox, T, nimp)
  		del = energy_asymmetry_vs_voltage(v, dn, tox, eox, nimp);
  		ef = fermi_bisection(ntot, del, T);
  		[deltan, n1, n2] = carrier_imbalance(ef, del, T);
- 		if(abs(deltan - dn)/deltan < 1e-6)
+ 		if(abs(deltan - dn)/abs(deltan) < 1e-6)
  			break
  		else
- 			dn = deltan
+ 			dn = deltan;
  	end
 
 end
