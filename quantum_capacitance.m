@@ -26,5 +26,6 @@ function [cq] = quantum_capacitance(surface_potential, energy_asymmetry, tempera
 		s = sign(band_index(j));
 		alpha = abs(band_index(j));
 		cq = cq + g*qe^2/(2*pi)*integral(@(k) -k.*df(ek(k, s, alpha) - qe*psi_s), 0, kcutoff);
+	end
 
 end 
